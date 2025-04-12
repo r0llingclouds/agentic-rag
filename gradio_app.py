@@ -3,7 +3,6 @@ import json
 import os
 from main import run_job_matching
 import dotenv
-import time
 
 # Load environment variables from .env
 dotenv.load_dotenv()
@@ -62,8 +61,14 @@ with gr.Blocks(theme=gr.themes.Soft()) as iface:
                 interactive=False
             )
             
-            # Main results display
-            results_markdown = gr.Markdown(label="Results")
+            # Main results display using Textbox with a box appearance
+            results_output = gr.Textbox(
+                label="Results", 
+                lines=20,
+                max_lines=50,
+                interactive=False,
+                show_copy_button=True
+            )
 
     # First click handler to update status text (guaranteed to be fast)
     submit_btn.click(
@@ -74,7 +79,7 @@ with gr.Blocks(theme=gr.themes.Soft()) as iface:
     ).then(  # Then run the actual processing
         fn=run_job_matching_logic,
         inputs=[resume_text_input, resume_file_input],
-        outputs=results_markdown
+        outputs=results_output
     ).then(  # Finally update status when done
         fn=lambda: "Processing complete!",
         inputs=None,
