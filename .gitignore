@@ -174,3 +174,7 @@ airflow/dags/__pycache__/
 
 # MacOS
 .DS_Store
+
+# Milvus
+milvus_demo.db
+.milvus_demo.db.lock

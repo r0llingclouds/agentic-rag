@@ -1,0 +1,102 @@
+[
+  {
+    "job_id": "ML-DS-001",
+    "title": "Machine Learning Engineer",
+    "company_name": "TechInnovate Solutions",
+    "location": "San Francisco, CA (Remote option available)",
+    "job_type": "Full-time",
+    "salary_range": "$120,000 - $150,000",
+    "required_skills": "Python, TensorFlow, PyTorch, Scikit-learn, Deep Learning, SQL, Docker, Git, MLOps",
+    "text": "TechInnovate Solutions is looking for a talented Machine Learning Engineer to join our AI team. You will design, build and deploy ML models to production, working closely with data scientists and backend engineers. The ideal candidate has extensive experience with Python ML frameworks and cloud deployment. You'll help us scale our recommendation engine and develop new AI-powered features for our SaaS platform.\n\nResponsibilities:\n- Develop and optimize machine learning models for production use\n- Implement efficient data processing pipelines\n- Collaborate with cross-functional teams to integrate ML solutions\n- Deploy and monitor ML models in cloud environments\n- Stay current with latest ML research and techniques\n\nRequirements:\n- Bachelor's or Master's degree in Computer Science, Data Science, or related field\n- 3+ years of experience building ML models with TensorFlow or PyTorch\n- Strong Python programming skills\n- Experience with cloud platforms (AWS, GCP, or Azure)\n- Knowledge of software engineering best practices\n- Excellent problem-solving and communication skills"
+  },
+  {
+    "job_id": "DEV-FS-002",
+    "title": "Full Stack Developer",
+    "company_name": "WebMatrix Technologies",
+    "location": "Boston, MA (Hybrid)",
+    "job_type": "Full-time",
+    "salary_range": "$95,000 - $125,000",
+    "required_skills": "JavaScript, TypeScript, React, Node.js, Express, MongoDB, REST APIs, Git, Agile, CI/CD",
+    "text": "WebMatrix Technologies is seeking a skilled Full Stack Developer to join our growing team. You'll work on challenging projects for various clients, building responsive web applications from the ground up. As a key member of our development team, you'll contribute to both frontend and backend components.\n\nResponsibilities:\n- Design and develop responsive web applications\n- Implement RESTful APIs and backend services\n- Optimize applications for performance and scalability\n- Collaborate with UX/UI designers to implement user-friendly interfaces\n- Participate in code reviews and contribute to technical discussions\n\nRequirements:\n- 3+ years of experience in full stack development\n- Proficiency in JavaScript/TypeScript, React, and Node.js\n- Experience with NoSQL databases like MongoDB\n- Knowledge of version control systems (Git)\n- Understanding of web security best practices\n- Excellent problem-solving and teamwork skills"
+  },
+  {
+    "job_id": "DATA-ENG-003",
+    "title": "Data Engineer",
+    "company_name": "DataFlow Systems",
+    "location": "Seattle, WA (Remote)",
+    "job_type": "Full-time",
+    "salary_range": "$110,000 - $140,000",
+    "required_skills": "Python, SQL, Apache Spark, Hadoop, Airflow, ETL, AWS, Data Modeling, Kafka, Docker",
+    "text": "DataFlow Systems is looking for an experienced Data Engineer to design and implement data pipelines that power our analytics platform. You'll work with large datasets and build scalable solutions for data processing, storage, and retrieval. The ideal candidate has a strong background in distributed systems and data processing frameworks.\n\nResponsibilities:\n- Design, build, and maintain scalable data pipelines\n- Optimize data storage and retrieval systems\n- Implement ETL processes for various data sources\n- Ensure data quality and integrity across systems\n- Collaborate with data scientists to support analytical needs\n\nRequirements:\n- Bachelor's degree in Computer Science, Engineering, or related field\n- 4+ years of experience in data engineering\n- Strong SQL skills and experience with NoSQL databases\n- Proficiency with Python and data processing frameworks (Spark, Hadoop)\n- Experience with cloud platforms, preferably AWS\n- Knowledge of data warehousing concepts and best practices"
+  },
+  {
+    "job_id": "CLOUD-ARCH-004",
+    "title": "Cloud Solutions Architect",
+    "company_name": "CloudNative Innovations",
+    "location": "Austin, TX (On-site)",
+    "job_type": "Full-time",
+    "salary_range": "$130,000 - $160,000",
+    "required_skills": "AWS, Azure, GCP, Kubernetes, Terraform, CI/CD, Microservices, Docker, DevOps, IaC",
+    "text": "CloudNative Innovations is seeking a Cloud Solutions Architect to design and implement cloud-native applications and infrastructure. You'll lead the technical direction for cloud migrations and new projects, working with clients to understand their needs and architecting optimal solutions. The ideal candidate has extensive experience with major cloud platforms and modern infrastructure technologies.\n\nResponsibilities:\n- Design scalable, secure, and resilient cloud architectures\n- Lead technical discussions with clients and internal teams\n- Create infrastructure-as-code templates and automation scripts\n- Develop reference architectures and best practices\n- Evaluate and recommend new technologies and approaches\n\nRequirements:\n- 5+ years of experience in cloud architecture and implementation\n- Deep knowledge of at least one major cloud provider (AWS, Azure, or GCP)\n- Experience with containerization and orchestration (Docker, Kubernetes)\n- Familiarity with infrastructure-as-code tools (Terraform, CloudFormation)\n- Understanding of networking, security, and compliance in cloud environments\n- Strong communication and problem-solving skills"
+  },
+  {
+    "job_id": "DEV-MOBILE-005",
+    "title": "Senior iOS Developer",
+    "company_name": "AppSphere Inc.",
+    "location": "New York, NY (Hybrid)",
+    "job_type": "Full-time",
+    "salary_range": "$115,000 - $145,000",
+    "required_skills": "Swift, Objective-C, iOS SDK, Xcode, UIKit, SwiftUI, Core Data, REST APIs, Git, Agile",
+    "text": "AppSphere Inc. is looking for a Senior iOS Developer to lead the development of our innovative mobile applications. You'll be responsible for architecting, building, and maintaining high-quality iOS apps that delight our users. The ideal candidate has a proven track record of shipping successful iOS applications and mentoring junior developers.\n\nResponsibilities:\n- Design and implement new features for iOS applications\n- Ensure code quality through unit testing and code reviews\n- Optimize applications for performance and usability\n- Collaborate with cross-functional teams (design, backend, QA)\n- Mentor junior developers and share knowledge\n\nRequirements:\n- 5+ years of iOS development experience\n- Proficiency in Swift and/or Objective-C\n- Strong understanding of iOS frameworks and design patterns\n- Experience with RESTful APIs and third-party libraries\n- Familiarity with version control systems and CI/CD pipelines\n- Excellent problem-solving and communication skills"
+  },
+  {
+    "job_id": "SECURITY-ENG-006",
+    "title": "Cybersecurity Engineer",
+    "company_name": "SecureDefend Solutions",
+    "location": "Washington, DC (On-site)",
+    "job_type": "Full-time",
+    "salary_range": "$125,000 - $155,000",
+    "required_skills": "Network Security, Penetration Testing, SIEM, Firewall, IDS/IPS, Cloud Security, Encryption, Risk Assessment, CISSP, Python",
+    "text": "SecureDefend Solutions is seeking a Cybersecurity Engineer to strengthen our clients' security posture through technical assessments, implementations, and incident response. You'll work with a team of security professionals to identify vulnerabilities, implement security controls, and respond to security incidents. The ideal candidate has a strong technical background and security certifications.\n\nResponsibilities:\n- Conduct security assessments and penetration testing\n- Implement and configure security tools and technologies\n- Monitor security events and respond to incidents\n- Develop security policies and procedures\n- Provide technical guidance on security best practices\n\nRequirements:\n- Bachelor's degree in Cybersecurity, Computer Science, or related field\n- 4+ years of experience in cybersecurity roles\n- Security certifications (CISSP, CEH, Security+, or equivalent)\n- Experience with security tools (firewalls, SIEM, IDS/IPS)\n- Knowledge of cloud security and compliance frameworks\n- Strong analytical and problem-solving skills"
+  },
+  {
+    "job_id": "GAME-DEV-007",
+    "title": "Unity Game Developer",
+    "company_name": "GameVerse Studios",
+    "location": "Los Angeles, CA (Remote)",
+    "job_type": "Full-time",
+    "salary_range": "$90,000 - $120,000",
+    "required_skills": "Unity, C#, Game Design, 3D Modeling, Animation, Physics, AR/VR, Git, Agile, Problem-solving",
+    "text": "GameVerse Studios is looking for a talented Unity Game Developer to join our creative team. You'll work on exciting game projects from concept to launch, implementing gameplay features, optimizing performance, and creating immersive experiences. The ideal candidate has a strong portfolio of Unity projects and a passion for game development.\n\nResponsibilities:\n- Develop gameplay features and systems using Unity and C#\n- Collaborate with artists and designers to implement assets and mechanics\n- Optimize game performance across various platforms\n- Debug and fix issues to ensure quality and stability\n- Participate in design discussions and provide technical input\n\nRequirements:\n- 3+ years of experience with Unity and C#\n- Strong understanding of game development principles\n- Experience with 3D mathematics and physics\n- Familiarity with version control systems (Git)\n- Portfolio demonstrating Unity projects\n- Problem-solving skills and attention to detail"
+  },
+  {
+    "job_id": "AI-RESEARCH-008",
+    "title": "AI Research Scientist",
+    "company_name": "Cognitive Dynamics Research",
+    "location": "Remote (Global)",
+    "job_type": "Full-time",
+    "salary_range": "$140,000 - $180,000",
+    "required_skills": "Machine Learning, Deep Learning, NLP, Computer Vision, PyTorch, TensorFlow, Python, Research, Math, Statistics",
+    "text": "Cognitive Dynamics Research is seeking an AI Research Scientist to push the boundaries of artificial intelligence. You'll conduct original research in areas such as natural language processing, computer vision, or reinforcement learning, and translate research insights into practical applications. The ideal candidate has a strong academic background and research experience in AI/ML.\n\nResponsibilities:\n- Conduct original research in artificial intelligence\n- Develop novel algorithms and approaches to solve complex problems\n- Implement and evaluate experimental models\n- Publish research findings in top-tier conferences and journals\n- Collaborate with engineering teams to apply research to products\n\nRequirements:\n- PhD in Computer Science, AI, or related field (or equivalent research experience)\n- Strong publication record in AI/ML conferences (NeurIPS, ICML, ICLR, etc.)\n- Deep expertise in machine learning frameworks (PyTorch, TensorFlow)\n- Excellence in mathematical modeling and statistical analysis\n- Ability to communicate complex ideas clearly and effectively\n- Passion for advancing the state of AI technology"
+  },
+  {
+    "job_id": "DEVOPS-ENG-009",
+    "title": "DevOps Engineer",
+    "company_name": "Continuous Delivery Systems",
+    "location": "Chicago, IL (Hybrid)",
+    "job_type": "Full-time",
+    "salary_range": "$105,000 - $135,000",
+    "required_skills": "Kubernetes, Docker, AWS, Terraform, CI/CD, Jenkins, Ansible, Linux, Monitoring, Shell Scripting",
+    "text": "Continuous Delivery Systems is looking for a DevOps Engineer to help us build and maintain reliable, scalable infrastructure and deployment pipelines. You'll work with development teams to implement CI/CD processes, automate infrastructure provisioning, and ensure high availability of our systems. The ideal candidate has a strong background in cloud platforms and automation tools.\n\nResponsibilities:\n- Design and implement CI/CD pipelines\n- Automate infrastructure provisioning and configuration\n- Monitor system performance and optimize resources\n- Troubleshoot and resolve infrastructure issues\n- Collaborate with development teams on deployment strategies\n\nRequirements:\n- 3+ years of experience in DevOps or SRE roles\n- Strong knowledge of cloud platforms (AWS, Azure, or GCP)\n- Experience with containerization and orchestration (Docker, Kubernetes)\n- Familiarity with infrastructure-as-code tools (Terraform, CloudFormation)\n- Proficiency in scripting languages (Python, Bash)\n- Understanding of networking and security concepts"
+  },
+  {
+    "job_id": "DATA-SCI-010",
+    "title": "Data Scientist",
+    "company_name": "Insight Analytics",
+    "location": "Denver, CO (Remote)",
+    "job_type": "Full-time",
+    "salary_range": "$100,000 - $130,000",
+    "required_skills": "Python, R, SQL, Statistics, Machine Learning, Data Visualization, NumPy, Pandas, Scikit-learn, A/B Testing",
+    "text": "Insight Analytics is seeking a Data Scientist to extract actionable insights from complex datasets. You'll work with stakeholders to understand business problems, develop analytical approaches, and communicate findings effectively. The ideal candidate combines strong technical skills with business acumen and communication abilities.\n\nResponsibilities:\n- Analyze large datasets to identify patterns and trends\n- Develop statistical models and machine learning algorithms\n- Design and interpret A/B tests and experiments\n- Create visualizations and dashboards to communicate findings\n- Collaborate with business teams to implement data-driven solutions\n\nRequirements:\n- Master's degree in Data Science, Statistics, Computer Science, or related field\n- 3+ years of experience in data science or analytics roles\n- Proficiency in Python or R for data analysis\n- Strong SQL skills for data extraction and manipulation\n- Experience with machine learning libraries and frameworks\n- Excellent communication and presentation skills"
+  }
+]
