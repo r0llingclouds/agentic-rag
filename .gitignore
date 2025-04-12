@@ -42,7 +42,6 @@ ipython_config.py
 # Data files (uncomment as needed)
 *.csv
 *.dat
-*.txt
 # *.db
 # *.sqlite
 # *.json
