@@ -1,6 +1,7 @@
 import gradio as gr
 import json
 import os
+import time  # Import time for timestamping
 from main import run_job_matching
 import dotenv
 import fitz  # PyMuPDF
@@ -53,6 +54,22 @@ def run_job_matching_logic(resume_text: str, resume_file):
         print(f"Error during job matching: {e}")
         return f"An error occurred during processing: {str(e)}"
 
+def save_results_to_markdown(results_text):
+    """Saves the results text to a timestamped Markdown file."""
+    if not results_text or not results_text.strip():
+        return "No results to save."
+    try:
+        timestamp = time.strftime("%Y%m%d_%H%M%S")
+        filename = f"job_matches_{timestamp}.md"
+        with open(filename, "w", encoding="utf-8") as md_file:
+            md_file.write(f"# Job Matching Results ({timestamp})\n\n")
+
+            md_file.write(results_text)
+        return f"Results saved to {filename}"
+    except Exception as e:
+        print(f"Error saving results to Markdown: {e}")
+        return f"Error saving results: {str(e)}"
+
 # Build the Gradio interface using Blocks
 with gr.Blocks(theme=gr.themes.Soft()) as iface:
     gr.Markdown("# Job Matching System")
@@ -86,6 +103,7 @@ with gr.Blocks(theme=gr.themes.Soft()) as iface:
                 interactive=False,
                 show_copy_button=True
             )
+            save_md_btn = gr.Button("Save Results to Markdown")
     
 
     # First click handler to update status text (guaranteed to be fast)
@@ -102,6 +120,14 @@ with gr.Blocks(theme=gr.themes.Soft()) as iface:
         fn=lambda: "Processing complete!",
         inputs=None,
         outputs=status_text
+    )
+
+    # Click handler for saving results
+    save_md_btn.click(
+        fn=save_results_to_markdown,
+        inputs=results_output,
+        outputs=status_text,
+        queue=False # Don't queue this, it should be fast
     )
 
 # Launch the Gradio app
