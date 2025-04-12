@@ -16,16 +16,10 @@ def run_job_matching_logic(resume_text: str, resume_file):
         # Prioritize file input if provided
         if resume_file is not None:
             try:
-                # --- Debugging Start ---
-                print(f"DEBUG: Received file object: {resume_file}")
                 if hasattr(resume_file, 'name'):
-                    print(f"DEBUG: Received filename: {resume_file.name}")
                     file_extension = os.path.splitext(resume_file.name)[1].lower()
-                    print(f"DEBUG: Detected extension: {file_extension}")
                 else:
-                    print("DEBUG: Uploaded object has no 'name' attribute.")
                     return "Error: Uploaded object is not a valid file."
-                # --- Debugging End ---
 
                 # Handle PDF files
                 if file_extension == '.pdf':
