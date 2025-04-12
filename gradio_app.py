@@ -61,9 +61,9 @@ def save_results_to_markdown(results_text):
     try:
         timestamp = time.strftime("%Y%m%d_%H%M%S")
         filename = f"job_matches_{timestamp}.md"
-        with open(filename, "w", encoding="utf-8") as md_file:
+        os.makedirs("results", exist_ok=True)
+        with open(os.path.join("results", filename), "w", encoding="utf-8") as md_file:
             md_file.write(f"# Job Matching Results ({timestamp})\n\n")
-
             md_file.write(results_text)
         return f"Results saved to {filename}"
     except Exception as e:

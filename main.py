@@ -210,7 +210,7 @@ def run_job_matching(resume_text: str):
 # CLI execution (runs only when script is executed directly)
 if __name__ == "__main__":
     # Default resume file or take from command line argument
-    resume_filename = sys.argv[1] if len(sys.argv) > 1 else "alex_gdev.md"
+    resume_filename = sys.argv[1] if len(sys.argv) > 1 else "Alex Chen Resume.md"
     with open(f"sample_resumes/{resume_filename}", "r") as file:
         resume = file.read()
 
