@@ -6,28 +6,19 @@ from crewai import Agent, Task, Crew, Process, LLM
 from crewai.tools import BaseTool
 from pymilvus import MilvusException
 
-
-"""
-NOTE
-
-HOW TO RUN:
-source .venv/bin/activate
-cd cv_agent/sandbox/
-python job_positions_ingestion.py # to ingest job positions in milvus
-python main.py alex_gdev.md # OR without argument.
-
-"""
-
+# Load environment variables from .env
 dotenv.load_dotenv()
 
-# Initialize the config objects (these will load from .env)
+# Initialize MilvusClient (assumes MilvusClient is defined in a separate module)
 from MilvusClient import MilvusClient
 milvus_client = MilvusClient()
 
+# Configuration from environment variables
 collection_name = os.getenv("MILVUS_COLLECTION")
 TOP_K = int(os.getenv("TOP_K", 3))
 OUTPUT_FIELDS = ["job_id", "title", "company_name", "required_skills"]
 
+# Define a custom tool for Milvus hybrid search
 class MilvusJobSearchTool(BaseTool):
     name: str = "Milvus Hybrid Job Search Tool"
     description: str = (
@@ -35,17 +26,16 @@ class MilvusJobSearchTool(BaseTool):
         "for relevant job postings based on a list of skills. "
         "Input must be a comma-separated string of skills."
     )
-    milvus_handler: MilvusClient = None # To hold the client instance
+    milvus_handler: MilvusClient = None  # To hold the client instance
 
     def __init__(self, milvus_handler: MilvusClient, **kwargs):
         super().__init__(**kwargs)
-
         self.milvus_handler = milvus_handler
         print(f"Initialized MilvusJobSearchTool with provided MilvusClient handler.")
 
     def _run(self, skills_list_str: str) -> str:
         if not self.milvus_handler:
-             return "Error: MilvusClient handler was not provided during initialization."
+            return "Error: MilvusClient handler was not provided during initialization."
         if not collection_name:
             return "Error: Milvus collection name not configured (MILVUS_COLLECTION)."
 
@@ -62,9 +52,9 @@ class MilvusJobSearchTool(BaseTool):
                 ranker_type="weighted",
                 sparse_weight=0.3,
                 dense_weight=0.7,
-                    output_fields=OUTPUT_FIELDS
+                output_fields=OUTPUT_FIELDS
             )
-    
+
             print(f"Hybrid search completed. Found {len(search_results)} potential matches.")
 
             for hit in search_results:
@@ -79,8 +69,8 @@ class MilvusJobSearchTool(BaseTool):
             print(f"Milvus search error via client: {e}")
             return f"Error during Milvus hybrid search: {e}"
         except AttributeError as e:
-             print(f"AttributeError during search: {e}. Check MilvusClient method.")
-             return f"Error: Missing required method in MilvusClient: {e}"
+            print(f"AttributeError during search: {e}. Check MilvusClient method.")
+            return f"Error: Missing required method in MilvusClient: {e}"
         except Exception as e:
             print(f"Unexpected error during hybrid search via client: {type(e).__name__} - {e}")
             return f"Unexpected error during Milvus hybrid search: {e}"
@@ -90,7 +80,7 @@ class MilvusJobSearchTool(BaseTool):
         else:
             return json.dumps(results, indent=2)
 
-
+# Initialize LLM (using GPT-4o from OpenAI)
 llm = LLM(
     model="gpt-4o",
     api_key=os.getenv('OPENAI_API_KEY'),
@@ -98,33 +88,35 @@ llm = LLM(
     temperature=0
 )
 
-
+# Define Skill Extractor Agent
 skill_extractor_agent = Agent(
-    role='Skill Extractor',  # Simplified role
+    role='Skill Extractor',
     goal='Extract 5 to 10 skills from text as a comma-separated list.',
-    backstory="", # Removed backstory
+    backstory="",
     verbose=True,
     allow_delegation=False,
     llm=llm,
 )
 
+# Define Skill Extraction Task
 extract_skills_task = Task(
     description=(
         "Carefully analyze the provided CV text: ```{cv_text}``` "
         "Identify and extract 5 to 10 technical skills, programming languages, frameworks, tools, and methodologies mentioned. "
         "Focus only on skills listed explicitly in the text. "
-        "Your final output MUST be ONLY the comma-separated list of skills and nothing else." # Added emphasis
+        "Your final output MUST be ONLY the comma-separated list of skills and nothing else."
     ),
     expected_output=(
-        "A single string containing the identified skills, separated ONLY by commas. Do not include any other text, explanation, or formatting. Between 5 and 10 skills."
-        "It cannot be I now can give a great answer"
+        "A single string containing the identified skills, separated ONLY by commas. Do not include any other text, explanation, or formatting. Between 5 and 10 skills. "
         "Example: Python, Java, AWS, Docker, SQL, Agile, Problem Solving"
     ),
     agent=skill_extractor_agent,
 )
 
+# Instantiate Milvus Job Search Tool
 milvus_tool = MilvusJobSearchTool(milvus_handler=milvus_client)
 
+# Define Job Search Agent
 job_search_agent = Agent(
     role='Milvus Job Search Specialist',
     goal=(
@@ -141,6 +133,7 @@ job_search_agent = Agent(
     llm=llm,
 )
 
+# Define Job Search Task
 search_jobs_task = Task(
     description=(
         f"Take the comma-separated list of skills identified in the previous step and use the "
@@ -153,9 +146,10 @@ search_jobs_task = Task(
         "If no jobs are found, state that clearly."
     ),
     agent=job_search_agent,
-    context=[extract_skills_task], # Use the output of the previous task
+    context=[extract_skills_task],
 )
 
+# Define Match Explainer Agent
 match_explainer_agent = Agent(
     role='Career Analyst and Job Match Explainer',
     goal=(
@@ -173,6 +167,7 @@ match_explainer_agent = Agent(
     llm=llm,
 )
 
+# Define Match Explanation Task
 explain_matches_task = Task(
     description=(
         "You will be provided with a candidate's CV and the JSON results from a previous job search task.\n\n"
@@ -197,6 +192,7 @@ explain_matches_task = Task(
     context=[search_jobs_task]
 )
 
+# Define the Job Matching Crew
 job_matching_crew = Crew(
     agents=[skill_extractor_agent, job_search_agent, match_explainer_agent],
     tasks=[extract_skills_task, search_jobs_task, explain_matches_task],
@@ -204,26 +200,29 @@ job_matching_crew = Crew(
     verbose=True
 )
 
-# load resume
-# get as argument the resume
-resume_filename = sys.argv[1] if len(sys.argv) > 1 else "alex_gdev.md"
+# Reusable function to run the job matching crew
+def run_job_matching(resume_text: str):
+    """Run the job matching crew with the provided resume text and return the result."""
+    inputs = {'cv_text': resume_text}
+    result = job_matching_crew.kickoff(inputs=inputs)
+    return result
 
-with open(f"sample_resumes/{resume_filename}", "r") as file:
-    resume = file.read()
+# CLI execution (runs only when script is executed directly)
+if __name__ == "__main__":
+    # Default resume file or take from command line argument
+    resume_filename = sys.argv[1] if len(sys.argv) > 1 else "alex_gdev.md"
+    with open(f"sample_resumes/{resume_filename}", "r") as file:
+        resume = file.read()
 
-inputs = {'cv_text': resume}
+    print("Starting main crew execution...")
+    result = run_job_matching(resume)
 
+    # Save results to a file
+    os.makedirs("results", exist_ok=True)
+    with open(f"results/job_matching_result_{resume_filename}", "w") as file:
+        file.write(str(result))
 
-# Original crew execution
-print("Starting main crew execution...")
-result = job_matching_crew.kickoff(inputs=inputs)
-
-# save result to file
-# create results directory if it doesn't exist
-os.makedirs("results", exist_ok=True)
-with open(f"results/job_matching_result_{resume_filename}", "w") as file:
-    file.write(str(result))
-
-print('=' * 50)
-print(result)
-print('=' * 50)
+    # Print results to console
+    print('=' * 50)
+    print(result)
+    print('=' * 50)
