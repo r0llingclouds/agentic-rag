@@ -15,13 +15,9 @@ A sophisticated job matching system that combines **Retrieval Augmented Generati
 - **PDF and Text Support**: Process resumes in various formats
 - **Persistence**: Save matching results for future reference
 
-## ▶️ Quick Demo
 
 <div align="center">
-  <a href="https://github.com/yourusername/agentic-rag/raw/main/media/demo.mov">
-    <img src="media/screenshot.png" alt="Watch the demo video" width="800" style="border: 2px solid #4CAF50; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-    <br>
-  </a>
+  <img src="media/demo.gif" width="800" alt="Demo Preview">
 </div>
 
 ## 🏗️ System Architecture
