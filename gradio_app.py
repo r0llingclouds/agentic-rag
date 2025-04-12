@@ -3,6 +3,7 @@ import json
 import os
 from main import run_job_matching
 import dotenv
+import fitz  # PyMuPDF
 
 # Load environment variables from .env
 dotenv.load_dotenv()
@@ -15,9 +16,23 @@ def run_job_matching_logic(resume_text: str, resume_file):
         # Prioritize file input if provided
         if resume_file is not None:
             try:
-                with open(resume_file.name, "r") as file:
-                    resume_text = file.read()
+                if hasattr(resume_file, 'name'):
+                    file_extension = os.path.splitext(resume_file.name)[1].lower()
+                else:
+                    return "Error: Uploaded object is not a valid file."
+
+                # Handle PDF files
+                if file_extension == '.pdf':
+                    with fitz.open(resume_file.name) as pdf:
+                        resume_text = ""
+                        for page in pdf:
+                            resume_text += page.get_text()
+                # Handle text files
+                else:
+                    with open(resume_file.name, "r") as file:
+                        resume_text = file.read()
             except Exception as file_e:
+                print(f"DEBUG: Received filename: {resume_file.name}")
                 return f"Error reading file: {str(file_e)}"
         # If no file is uploaded, use the text input
         elif not resume_text or not resume_text.strip():
@@ -50,7 +65,9 @@ with gr.Blocks(theme=gr.themes.Soft()) as iface:
                 placeholder="Paste your resume here...",
                 label="Resume Text"
             )
-            resume_file_input = gr.File(label="Or upload your resume file")
+            resume_file_input = gr.File(
+                label="Or upload your resume file (PDF or TXT)"
+            )
             submit_btn = gr.Button("Find Matching Jobs", variant="primary")
 
         with gr.Column(scale=2):  # Right Column for Results
@@ -69,6 +86,7 @@ with gr.Blocks(theme=gr.themes.Soft()) as iface:
                 interactive=False,
                 show_copy_button=True
             )
+    
 
     # First click handler to update status text (guaranteed to be fast)
     submit_btn.click(
