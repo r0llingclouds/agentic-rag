@@ -177,3 +177,6 @@ airflow/dags/__pycache__/
 # Milvus
 milvus_demo.db
 .milvus_demo.db.lock
+
+# Gradio
+.gradio
