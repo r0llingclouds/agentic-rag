@@ -1,6 +1,6 @@
 # AI Agentic-RAG Job Matching System
 
-A sophisticated AI-powered job matching system that combines **Retrieval Augmented Generation (RAG)** with an **agentic workflow** to match candidate resumes with suitable job positions. The system uses vector embeddings to find relevant job matches and provides detailed explanations of why each position is a good fit.
+An AI-powered job matching system that combines **Retrieval Augmented Generation (RAG)** with an **agentic workflow** to match candidate resumes with suitable job positions. The system uses vector embeddings to find relevant job matches and provides detailed explanations of why each position is a good fit.
 
 <p align="center">
   <img src="media/logo.jpg" alt="3D Test Logo" width="950"/>
